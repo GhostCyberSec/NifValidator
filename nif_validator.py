@@ -15,7 +15,7 @@ def valida_nif(numero):
     soma = sum([int(dig) * (EXPECTED_DIGITS - pos) for pos, dig in enumerate(numero)])
     resto = soma % 11
     if (numero[-1] == '0' and resto == 1):
-        resto = (soma + 10) % 11
+        resto = (soma + 10) # % 11
     return resto == 0
 
 if __name__ == '__main__': # pragma: no cover
