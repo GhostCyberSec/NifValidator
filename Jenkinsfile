@@ -27,7 +27,7 @@ pipeline {
 
         stage('Unit test') {
             agent {
-                docker {
+               docker {
                     image 'python:3.11-slim'
                     reuseNode true
                 }
@@ -37,8 +37,10 @@ pipeline {
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'result.xml',
-                    fingerprint: true junit: 'result.xml'
+                // Archive the test results as artifacts
+                archiveArtifacts artifacts: 'result.xml', allowEmptyArchive: true
+                // Publish JUnit test results
+                junit 'result.xml'
                 }
             }
         }
