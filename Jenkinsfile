@@ -21,6 +21,14 @@ pipeline {
                 """
             }
         }
+
+        stage('Build') {
+            steps {
+                sh"""
+                docker build -t carvalhoigor/nif-validator .
+                """
+            }
+        }
     }
 
 }
