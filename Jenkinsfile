@@ -17,11 +17,32 @@ pipeline {
             }
             steps {
                 sh"""
+                export PIP_DISABLE_PIP_VERSION_CHECK=1
+                export PATH="$HOME/.local/bin:${PATH}"
                 pip install -r requirements.txt
+                pip install -r requirements-test.txt
                 """
             }
         }
 
+        stage('Unit test') {
+            agent {
+                docker {
+                    image 'python:3.11-slim'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh 'pytest --junitxml result.xml tests/'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'result.xml',
+                    fingerprint: true, junit: 'result.xml'
+                }
+            }
+        }
+        
         stage('Deliver') {
             steps {
                 withCredentials([usernamePassword(
