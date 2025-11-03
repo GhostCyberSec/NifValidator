@@ -42,7 +42,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['cluster-credentials']) {
                     sh"""
-                    ssh -o StrictHostKeyChecking=no redhat@172.31.36.26 docker --version
+                    ssh -o StrictHostKeyChecking=no redhat@172.31.36.26 docker rm -f nif-validator || true
                     """
                 }
             }
