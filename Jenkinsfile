@@ -73,7 +73,7 @@ pipeline {
             }
         }
 
-        stage('Cyclomatic complexity analysis') {
+         stage('Cyclomatic complexity analysis') {
                     agent {
                         docker {
                             image 'python:3.11-slim'
@@ -83,7 +83,7 @@ pipeline {
                     steps {
                         sh 'python3 -m radon cc . -a -s --exclude site-packages'
                     }
-            }
+                }
         
         stage('Deliver') {
             steps {
