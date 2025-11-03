@@ -20,7 +20,7 @@ pipeline {
                 export PIP_DISABLE_PIP_VERSION_CHECK=1
                 export PATH="$HOME/.local/bin:${PATH}"
                 pip install -r requirements.txt
-                pip install -r requirements-test.txt
+                pip install -r /tests/requirements-test.txt
                 """
             }
         }
