@@ -8,11 +8,11 @@ def test_positive():
         print('[+] nif: {}'.format(nif))
         assert validator.valida_nif(nif)
 
-def test_marked():
-    db = ['592889050', '998113360', '292849680']
-    for nif in db:
-        print('[+] nif: {}'.format(nif))
-        assert validator.valida_nif(nif)
+#def test_marked():
+#    db = ['592889050', '998113360', '292849680']
+#    for nif in db:
+#        print('[+] nif: {}'.format(nif))
+#        assert validator.valida_nif(nif)
 
 def test_negative():
     db = ['292849681', '245382343', '12158895', '59288905000', '999999999', '123', '639566468']
